@@ -127,6 +127,7 @@ export default function HealthLandingPage() {
       description:
         "Биеийн жингийн индексээ хурдан тооцоолж, эрүүл мэндийн үнэлгээ аваарай",
       gradient: "from-teal-500 to-cyan-500",
+      href: "/bmi",
     },
     {
       icon: "🍽️",
@@ -134,6 +135,7 @@ export default function HealthLandingPage() {
       description:
         "Хувь хүнд тохирсон хоолны төлөвлөгөө боловсруулж, эрүүл хооллолтоо хянаарай",
       gradient: "from-orange-500 to-red-500",
+      href: "/foods",
     },
     {
       icon: "💪",
@@ -141,6 +143,7 @@ export default function HealthLandingPage() {
       description:
         "Өөрийн зорилгод нийцсэн дасгалын төлөвлөгөө гаргаж, ахиц дэвшлээ хянаарай",
       gradient: "from-purple-500 to-pink-500",
+      href: "/exercises",
     },
     {
       icon: "📈",
@@ -148,6 +151,7 @@ export default function HealthLandingPage() {
       description:
         "Жингийн өөрчлөлт, калорийн хэрэглээ болон бусад үзүүлэлтээ хадгалаарай",
       gradient: "from-green-500 to-emerald-500",
+      href: "/progress",
     },
   ];
 
@@ -202,27 +206,37 @@ export default function HealthLandingPage() {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                whileHover={{ y: -8, transition: { duration: 0.2 } }}
+                whileHover={{ y: -8 }}
+                transition={{ duration: 0.2 }}
               >
-                <Card className="h-full border-gray-200 hover:shadow-xl transition-shadow cursor-pointer">
-                  <CardHeader>
-                    <div
-                      className={`inline-flex p-4 bg-linear-to-br ${feature.gradient} rounded-xl mb-4 text-white shadow-md text-4xl w-fit`}
-                    >
-                      {feature.icon}
-                    </div>
-                    <CardTitle className="text-2xl">{feature.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-muted-foreground text-base leading-relaxed">
-                      {feature.description}
-                    </CardDescription>
-                    <div className="mt-6 flex items-center text-teal-600 font-medium">
-                      <span className="text-sm">Дэлгэрэнгүй үзэх</span>
-                      <span className="ml-2">→</span>
-                    </div>
-                  </CardContent>
-                </Card>
+                <Link href={feature.href} className="block h-full">
+                  <Card className="h-full border-gray-200 hover:shadow-xl transition-all duration-300 cursor-pointer group">
+                    <CardHeader>
+                      <div
+                        className={`inline-flex p-4 bg-linear-to-br ${feature.gradient} 
+              rounded-xl mb-4 text-white shadow-md text-4xl w-fit 
+              group-hover:scale-110 transition-transform duration-300`}
+                      >
+                        {feature.icon}
+                      </div>
+
+                      <CardTitle className="text-2xl group-hover:text-teal-600 transition-colors">
+                        {feature.title}
+                      </CardTitle>
+                    </CardHeader>
+
+                    <CardContent>
+                      <CardDescription className="text-muted-foreground text-base leading-relaxed">
+                        {feature.description}
+                      </CardDescription>
+
+                      <div className="mt-6 flex items-center text-teal-600 font-medium group-hover:translate-x-1 transition-transform">
+                        <span className="text-sm">Дэлгэрэнгүй үзэх</span>
+                        <span className="ml-2">→</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
               </motion.div>
             ))}
           </motion.div>
